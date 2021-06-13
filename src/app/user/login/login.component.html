@@ -1,0 +1,40 @@
+<div class="main-wrapper">
+    <div class="login-box flex flex-middle flex-wrap">
+     
+        <div class="col s6 login-form-wrap">
+            <div class="login-form-inner">
+                <div *ngIf="noLoginFound" class="error-text">
+                    {{errorMessage}}
+                </div>
+                <form [formGroup]="loginForm" class="pt-30">
+                    <div class="form-row mb-30">
+                        <label for="email">Email</label>
+                        <input type="email" [ngClass]="{ 'has-error': submitted && f.email.errors }"
+                            formControlName="email" class="form-input" id="loginEmail">
+                        <div *ngIf="submitted && f.email.errors" class="error-text">
+                            <span *ngIf="f.email.errors['required']"> Email is required </span>
+                            <span *ngIf="f.email.errors['email']"> Enter valid email address </span>
+                        </div>
+                    </div>
+                    <div class="form-row mb-30">
+                        <div class="eye-symbol-main">
+                            <label for="password">Password</label>
+                            <input matInput [type]="hide ? 'text' : 'password'" type="password"
+                                formControlName="password" [ngClass]="{ 'has-error': submitted && f.password.errors }"
+                                class="form-input" id="loginPassword">                            
+                        </div>
+                        <div *ngIf="submitted && f.password.errors" class="error-text">
+                            <span *ngIf="f.password.errors['required']">Password is required</span>
+                        </div>
+                    </div>
+                    <div class="pt-20">
+                        <button type="submit" (click)="onSubmit()" class="btn btn-green">Sign In</button>
+                    </div>
+                    <div class="text-placeholder fs-14 mt-15 mb-15">Not a member yet?<a
+                            [routerLink]="['/']" class="f-bold text-green ml-10">Sign Up?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

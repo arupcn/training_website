@@ -1,0 +1,58 @@
+<div class="main-wrapper">
+    <div class="login-box flex flex-wrap flex-middle">
+        <div class="s6 login-form-wrap col">
+            <div class="login-form-inner">
+                <div *ngIf="ifExist" class="error-text">
+                    {{errorMessage}}
+                </div>
+                <form [formGroup]="signUpForm" class="pt-30" autocomplete="off">
+                    <div class="form-row mb-30">
+                        <label for="user-name">First Name</label>
+                        <input type="text" class="form-input" [readonly]="notEditable" formControlName="firstName"
+                            [ngClass]="{ 'has-error': submitted && f.firstName.errors }">
+                        <div *ngIf="submitted && f.firstName.errors" class="error-text">
+                            <span *ngIf="f.firstName.errors['required']">First Name is required </span>
+                            <span *ngIf="f.firstName.errors?.maxlength">First Name should be maximum 100 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-row mb-30">
+                        <label for="user-name">Last Name</label>
+                        <input type="text" class="form-input" [readonly]="notEditable" formControlName="lastName"
+                            [ngClass]="{ 'has-error': submitted && f.lastName.errors }">
+                        <div *ngIf="submitted && f.lastName.errors" class="error-text">
+                            <span *ngIf="f.lastName.errors['required']">Last Name is required </span>
+                            <span *ngIf="f.lastName.errors?.maxlength">Last Name should be maximum 100 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-row mb-30">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-input" id="user-name" [readonly]="notEditable"
+                            [readonly]="notEditableFb" formControlName="email"
+                            [ngClass]="{ 'has-error': submitted && f.email.errors }">
+                        <div *ngIf="submitted && f.email.errors" class="error-text">
+                            <span *ngIf="f.email.errors['required']"> Email is required </span>
+                            <span *ngIf="f.email.errors['email']"> Enter valid email address </span>
+                            <span *ngIf="f.email.errors?.maxlength">Email should be maximum 100 characters</span>
+                        </div>
+                    </div>
+                    <div class="form-row mb-30">
+                        <div class="eye-symbol-main">
+                            <label for="password">Password</label>
+                            <input matInput [type]="hide ? 'text' : 'password'" type="password"
+                                formControlName="newPassword"
+                                [ngClass]="{ 'has-error': submitted && f.newPassword.errors }" class="form-input"
+                                autocomplete="new-password">                           
+                        </div>
+                    
+                    </div>
+                    <div class="pt-20">
+                        <button type="button" class="btn btn-green" (click)="onSubmit()">Sign Up</button>
+                    </div>
+                    <div class="text-placeholder fs-14 mt-15 mb-15">Already a member?<a [routerLink]="['/login']"
+                            class="f-medium text-green ml-10">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

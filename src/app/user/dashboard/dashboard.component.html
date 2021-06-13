@@ -1,0 +1,33 @@
+<div class="container col">
+    <div class="w-100 adminTable m12 tabs-gap righttab col">
+        <div class="radius-10 mb-20 roundedBoxes pt-20 pb-30 pr-30 w-100 tabcontent active">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="!noData">
+                        <tr  *ngFor="let item of userList">
+                            <td >{{item?.firstName}}</td>
+                            <td >{{item?.lastName}}</td>
+                            <td >{{item?.email}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="noData">
+                        <tr>
+                            <td colspan="9" style="text-align:center">No result found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button (click) = "Logout()"> Logout </button>
+</div>
